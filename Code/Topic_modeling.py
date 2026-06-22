@@ -1,4 +1,3 @@
-python
 """
 BERTopic modelling of Braincels discussions.
 

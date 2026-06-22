@@ -26,7 +26,6 @@ To view them:
 1. Download the `.html` file from the `figures/` folder.
 2. Open the file locally in a web browser.
 
-The visualisations are interactive and allow zooming, hovering over topics, and exploring the embedding space.
 ## Requirements
 
 Install the required Python packages, after installing the requirements, download the spaCy language model:

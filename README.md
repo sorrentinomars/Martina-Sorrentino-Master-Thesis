@@ -18,6 +18,15 @@ The original datasets and trained machine learning models are not included in th
 
 The code documents the methodology and allows reproduction of the analysis pipeline with appropriate access to the required data and trained models.
 
+## Interactive visualisations
+
+The repository includes interactive Plotly/BERTopic visualisations as HTML files.
+
+To view them:
+1. Download the `.html` file from the `plots/` folder.
+2. Open the file locally in a web browser.
+
+The visualisations are interactive and allow zooming, hovering over topics, and exploring the embedding space.
 ## Requirements
 
 Install the required Python packages, after installing the requirements, download the spaCy language model:

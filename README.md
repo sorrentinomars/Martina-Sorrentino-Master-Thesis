@@ -10,7 +10,7 @@ The project applies topic modelling, lexicon-based analysis, and emotion analysi
   - lexicon-based analysis
   - emotion analysis (j-hartmann/emotion-english-distilroberta-base)
 
-- Generated plots and visualisations from the analysis pipeline.
+- Generated plots and visualisations from the analysis pipeline. Visual outputs are available in the figures folder.
 
 ## Data and Models
 

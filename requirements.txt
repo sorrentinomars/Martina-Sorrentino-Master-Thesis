@@ -1,0 +1,13 @@
+numpy
+pandas
+joblib
+spacy
+umap-learn
+bertopic
+hdbscan
+nltk
+sentence-transformers
+scikit-learn
+transformers
+tqdm
+torch

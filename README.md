@@ -23,7 +23,7 @@ The code documents the methodology and allows reproduction of the analysis pipel
 The repository includes interactive Plotly/BERTopic visualisations as HTML files.
 
 To view them:
-1. Download the `.html` file from the `plots/` folder.
+1. Download the `.html` file from the `figures/` folder.
 2. Open the file locally in a web browser.
 
 The visualisations are interactive and allow zooming, hovering over topics, and exploring the embedding space.

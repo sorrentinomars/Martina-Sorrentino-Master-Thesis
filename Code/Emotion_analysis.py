@@ -21,9 +21,9 @@ from tqdm import tqdm
 from transformers import pipeline
 from collections import defaultdict
 
-# ============================================================================
-# LOAD MODEL AND DATA
-# ============================================================================
+
+### LOAD MODEL AND DATA
+
 # ------------------------------------------------------------------
 # NOTE:
 # The original dataset and trained BERTopic model are not included
@@ -40,10 +40,7 @@ df = pd.read_csv(
 # Documents were already preprocessed and aggregated at the thread level
 df["document"] = df["document"].fillna("").astype(str)
 
-# ============================================================================
 # TOPIC ASSIGNMENTS
-# ============================================================================
-
 df["topic"] = topic_model.topics_
 grouped = df[df["topic"] != -1].copy() #REMOVE OUTLIERS
 
@@ -64,9 +61,8 @@ labels_dict = dict(
 
 grouped["topic_label"] = grouped["topic"].map(labels_dict)
 
-# ============================================================================
-# EMOTION CLASSIFICATION
-# ============================================================================
+
+### EMOTION CLASSIFICATION
 
 emotion_classifier = pipeline(
     "text-classification",
@@ -100,10 +96,7 @@ grouped[["emotion_jhartmann", "emotion_jhartmann_score"]] = grouped["document"].
     lambda x: pd.Series(get_emotion_jhartmann(x))
 )
 
-# ============================================================================
 # SAVE DOCUMENT LEVEL OUTPUT
-# ============================================================================
-
 grouped[
     [
         "thread_id",
@@ -118,9 +111,8 @@ grouped[
     index=False
 )
 
-# ============================================================================
-# COMPUTE AND SAVE OVERALL EMOTION DISTRIBUTION
-# ============================================================================
+
+###  OVERALL EMOTION DISTRIBUTION
 
 overall_emotion = (
     grouped.groupby("emotion_jhartmann")
@@ -145,9 +137,8 @@ overall_emotion.to_csv(
     index=False
 )
 
-# ============================================================================
-# TOPIC LEVEL EMOTION ANALYSIS
-# ============================================================================
+
+### TOPIC LEVEL EMOTION ANALYSIS
 
 topic_emotion = (
     grouped.groupby(
@@ -165,7 +156,6 @@ topic_emotion = (
 )
 
 # Dominant emotion per topic
-
 dominant_emotion = (
     topic_emotion
     .sort_values(
@@ -186,7 +176,6 @@ dominant_emotion = (
 )
 
 # Full emotion distribution per topic
-
 topic_emotion_breakdown = (
     topic_emotion
     .pivot_table(
@@ -201,6 +190,7 @@ topic_emotion_breakdown = (
     .reset_index()
 )
 
+# EXPORT RESULTS
 dominant_emotion.to_csv(
     "topic_dominant_emotion.csv",
     index=False

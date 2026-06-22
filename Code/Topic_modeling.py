@@ -28,9 +28,9 @@ from nltk.corpus import stopwords
 from sentence_transformers import SentenceTransformer
 from sklearn.feature_extraction.text import CountVectorizer
 
-# ============================================================================
-# LOAD DATA
-# ============================================================================
+
+### LOAD DATA
+
 # ------------------------------------------------------------------
 # NOTE:
 # The original dataset and trained BERTopic model are not included
@@ -49,10 +49,7 @@ df["document"] = df["document"].fillna("").astype(str)
 docs = df["document"].tolist()
 print(f"Number of documents: {len(docs)}")
 
-# ============================================================================
 # CREATE AND SAVE EMBEDDINGS
-# ============================================================================
-
 embedding_model = SentenceTransformer('all-mpnet-base-v2')
 embeddings = embedding_model.encode(
     df["document"].tolist(), 
@@ -62,9 +59,8 @@ embeddings = np.array(embeddings)
 joblib.dump(embeddings, "embeddings.pkl")
 embeddings = embeddings[df.index]
 
-# ============================================================================
-# TOPIC MODEL
-# ============================================================================
+
+### TOPIC MODEL
 
 # UMAP
 umap_model = umap.UMAP(
@@ -114,31 +110,24 @@ topic_model = BERTopic(embedding_model=None,
                        calculate_probabilities=True
 )
 
-topics, _ = topic_model.fit_transform(docs, embeddings) #topic model on previewsly computed embeddings and lemmatised docs
-
+topics, _ = topic_model.fit_transform(docs, embeddings) #topic model on previewsly computed embeddings and cleaned corpus
 
 num_topics=len(topic_model.get_topic_info())
 print({num_topics})
 topic_info = topic_model.get_topic_info()
 print(topic_info.head(20))
 
-# ============================================================================
 # SAVING THE MODEL BEFORE OUTLIER REDUCTION
-# ============================================================================
-
 joblib.dump(
     topic_model,
     r"Topic_model_outliers.pkl"
 )
 
-# ============================================================================
-# TESTING OUTLIER REDUCTION THRESHOLD
-# ============================================================================
+
+### OUTLIER REDUCTION
 
 embedding_model = SentenceTransformer("all-mpnet-base-v2") 
 topic_model.embedding_model = embedding_model
-
-# TEST WHICH THRESHOLD FOR REDUCTION
 thresholds = [0.1, 0.2, 0.25, 0.3, 0.35, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 topics = topic_model.topics_
 
@@ -155,10 +144,8 @@ for t in thresholds:
     
     print(f"threshold={t:.2f} → outlier={n_outliers:5d} | assegnati={n_assigned:5d}")
 
-# ============================================================================
-# REDUCE OUTLIERS 
-# ============================================================================
 
+# REDUCE OUTLIERS 
 class SimpleEmbedder:
     def __init__(self, model):
         self.embedding_model = model
@@ -197,10 +184,7 @@ vectorizer_model = CountVectorizer(
     max_features=2000
 )
 
-# ============================================================================
 # FINAL TOPIC ASSIGNMENTS AFTER OUTLIER REDUCTION
-# ============================================================================
-
 topic_model.update_topics(
     docs,
     topics=new_topics,
@@ -216,6 +200,7 @@ grouped_filtered = (
     .reset_index(drop=True)
 )
 
+# SAVE UPDATED MODEL
 joblib.dump(
     topic_model,
  "Topic_model_no_outliers.pkl"

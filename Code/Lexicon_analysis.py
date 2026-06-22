@@ -2,7 +2,6 @@
 Lexicon-based analysis of BERTopic topics.
 
 Workflow:
-Workflow:
 1. Load BERTopic model and discussion corpus.
 2. Assign topic labels.
 3. Count occurrences of lexicon terms.
@@ -20,9 +19,8 @@ import joblib
 import pandas as pd
 
 
-# ============================================================================
-# LOAD MODEL AND DATA
-# ============================================================================
+### LOAD MODEL AND DATA
+
 # ------------------------------------------------------------------
 # NOTE:
 # The original dataset and trained BERTopic model are not included
@@ -39,12 +37,10 @@ df = pd.read_csv(
 # Documents were already preprocessed and aggregated at the thread level
 df["document"] = df["document"].fillna("").astype(str)
 
-# ============================================================================
-# TOPIC ASSIGNMENTS
-# ============================================================================
 
+# TOPIC ASSIGNMENTS
 df["topic"] = topic_model.topics_
-grouped = df[df["topic"] != -1].copy()
+grouped = df[df["topic"] != -1].copy() #REMOVE OUTLIERS
 
 topic_info = topic_model.get_topic_info()
 
@@ -63,9 +59,8 @@ labels_dict = dict(
 
 grouped["topic_label"] = grouped["topic"].map(labels_dict)
 
-# ============================================================================
-# LEXICONS
-# ============================================================================
+
+### LEXICON ANALYSIS
 
 COL_NAMES = {
     "Dehumanisation of Outgroups": "dehumanisation",
@@ -109,10 +104,7 @@ custom_emotion_lexicon = {
     ]
 }
 
-# ============================================================================
 # LEXICON COUNTS
-# ============================================================================
-
 for category, words in custom_emotion_lexicon.items():
 
     col = COL_NAMES[category]
@@ -127,10 +119,7 @@ for category, words in custom_emotion_lexicon.items():
     )
 
 
-# ============================================================================
 # NORMALIZATION
-# ============================================================================
-
 grouped["doc_word_count"] = (
     grouped["document"]
     .str.split()
@@ -146,10 +135,7 @@ for _, col in COL_NAMES.items():
     ).round(4)
 
 
-# ============================================================================
 # OVERALL CORPUS STATISTICS
-# ============================================================================
-
 print("\nCorpus statistics")
 
 total_docs = len(grouped)
@@ -180,9 +166,7 @@ print(
 )
 
 
-# ============================================================================
-# TOPIC-LEVEL AGGREGATION
-# ============================================================================
+### TOPIC-LEVEL AGGREGATION
 
 topic_lexicon = (
     grouped.groupby(["topic", "topic_label"])
@@ -240,10 +224,7 @@ topic_lexicon = (
     .reset_index()
 )
 
-# ============================================================================
 # EXPORT RESULTS
-# ============================================================================
-
 grouped[
     [
         "thread_id",

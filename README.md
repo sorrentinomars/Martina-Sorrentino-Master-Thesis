@@ -21,6 +21,16 @@ The code documents the methodology and allows reproduction of the analysis pipel
 ## Interactive visualisations
 
 The repository includes interactive Plotly/BERTopic visualisations as HTML files.
+- [Topic Map r/Braincels](Figures/Braincels_UMAP_projection.html)
+- [Topic Map Incels.is](Figures/Incelsis_UMAP_distribution.html)
+- [SIT Distribution r/Braincels](Figures/Braincels_SIT_distribution.html)
+- [SIT Distribution Incels.is](Figures/Incelsis_SIT_distribution.html)
+- [Emotion stacked bars r/Braincels](Figures/Braincels_emotion_.html)
+- [Emotion stacked bars Incels.is](Figures/Incelsis_emotion.html)
+- [Lexicon total hits per topic r/Braincels](Figures/Braincels_lexicon_totalhits.html)
+- [Lexicon total hits per topic Incels.is](Figures/Incelsis_lexicon_totalhits.html)
+- [Lexicon normalised scores per topic r/Braincels](Figures/Braincels_lexicon_normalised.html)
+- [Lexicon normalised scores per topic Incels.is](Figures/Incelsis_lexicon_normalised.html)
 
 To view them:
 1. Download the `.html` file from the `figures/` folder.

@@ -16,7 +16,7 @@ The project applies topic modelling, lexicon-based analysis, and emotion analysi
 
 The original datasets and trained machine learning models are not included in this repository due to privacy and ethical restrictions related to the source data.
 
-The code documents the methodology and allows reproduction of the analysis pipeline with appropriate access to the required data and trained models.
+The code documents the methodology and allows reproduction of the analysis pipeline with appropriate access to the required data.
 
 ## Interactive visualisations
 

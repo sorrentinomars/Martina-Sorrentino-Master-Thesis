@@ -1,5 +1,6 @@
 """
 BERTopic modelling.
+
 Workflow
 --------
 1. Load preprocessed corpus and create and save embeddings.

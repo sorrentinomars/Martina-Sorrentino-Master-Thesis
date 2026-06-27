@@ -12,7 +12,7 @@ Workflow
 7. Export results.
 
 Author: Martina Sorrentino
-Thesis: [Thesis Title]
+Thesis: "Coping in the Dark: Blackpill Ideology and Social Identity Management in Online Incel Communities"
 """
 
 import joblib

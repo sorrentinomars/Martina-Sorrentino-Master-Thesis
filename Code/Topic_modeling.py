@@ -1,6 +1,5 @@
 """
-BERTopic modelling of Braincels discussions.
-
+BERTopic modelling.
 Workflow
 --------
 1. Load preprocessed corpus and create and save embeddings.
@@ -12,7 +11,7 @@ Workflow
 7. Save final topic model.
 
 Author: Martina Sorrentino
-Thesis: [Thesis Title]
+Thesis: "Coping in the Dark: Blackpill Ideology and Social Identity Management in Online Incel Communities"
 """
 
 import re

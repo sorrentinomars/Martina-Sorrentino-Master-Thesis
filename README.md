@@ -33,7 +33,7 @@ The repository includes interactive Plotly/BERTopic visualisations as HTML files
 - [Lexicon normalised scores per topic Incels.is](Figures/Incelsis_lexicon_normalised.html)
 
 To view them:
-1. Download the `.html` file from the `figures/` folder.
+1. Download the `.html` file from the `Figures/` folder.
 2. Open the file locally in a web browser.
 
 ## Lexicon Analysis Dictionary

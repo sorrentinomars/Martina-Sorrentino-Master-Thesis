@@ -36,12 +36,19 @@ To view them:
 1. Download the `.html` file from the `figures/` folder.
 2. Open the file locally in a web browser.
 
+## Lexicon Analysis Dictionary
+
+The lexicon dictionary terms used in this analysis are drawn from the **Incel Violent Extremism Dictionary (IVEC)** (Baele et al., 2023). 
+
+If you use this data or code for subsequent analyses, please cite the original paper:
+
+> Baele, S., Brace, L., & Ging, D. (2023). A Diachronic Cross-Platforms Analysis of Violent Extremist Language in the Incel Online Ecosystem. *Terrorism and Political Violence*, 36(3), 382–405. https://doi.org/10.1080/09546553.2022.2161373
+
 ## Requirements
 
-Install the required Python packages, after installing the requirements, download the spaCy language model:
+Install the required Python packages from the requirements file and then download the spaCy language model dependencies:
 
 ```bash
 pip install -r requirements.txt
-
-```bash
 python -m spacy download en_core_web_sm
+
